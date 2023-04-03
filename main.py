@@ -8,7 +8,6 @@ def count_clicks(link, headers):
     url = f"https://api-ssl.bitly.com/v4/bitlinks/{link}/clicks/summary"
     response = requests.get(url, headers=headers)
     response.raise_for_status()
-    print(type(response.json()["total_clicks"]))
     return response.json()["total_clicks"]
 
 
