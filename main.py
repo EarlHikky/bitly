@@ -4,14 +4,15 @@ import requests
 from dotenv import load_dotenv
 
 
-def count_clicks(link: str, headers: dict) -> str:
+def count_clicks(link, headers):
     url = f"https://api-ssl.bitly.com/v4/bitlinks/{link}/clicks/summary"
     response = requests.get(url, headers=headers)
     response.raise_for_status()
+    print(type(response.json()["total_clicks"]))
     return response.json()["total_clicks"]
 
 
-def shorten_link(link: str, headers: dict) -> str:
+def shorten_link(link, headers):
     data = {"long_url": link,
             'Content-Type': 'application/json',
             }
@@ -21,19 +22,19 @@ def shorten_link(link: str, headers: dict) -> str:
     return response.json()["link"]
 
 
-def main(link: str, headers: dict) -> str:
+def main():
+    load_dotenv()
+    parser = argparse.ArgumentParser(description='Получение коротких ссылок')
+    parser.add_argument("link", help="Ссылка")
+    link = parser.parse_args().link
+    headers = {"Authorization": os.getenv("TOKEN")}
     if not link.startswith("bit.ly"):
         return shorten_link(link, headers)
     return count_clicks(link, headers)
 
 
 if __name__ == '__main__':
-    load_dotenv()
-    parser = argparse.ArgumentParser(description='Получение коротких ссылок')
-    parser.add_argument("link", help="Ссылка")
-    link = parser.parse_args().link
-    headers = {"Authorization": os.getenv("TOKEN")}
     try:
-        print(main(link, headers))
+        print(main())
     except requests.exceptions.HTTPError as error:
         exit(f"Can't get data from server:\n {error}")
