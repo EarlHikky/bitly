@@ -6,11 +6,11 @@ main.py выводит короткую ссылку или количесвто
 ## Установка
 - для windows: 
  
-    `pip install -r requirements.txt`
+    ```pip install -r requirements.txt```
 
 - для mac, linux: 
 
-    `pip3 install -r requirements.txt`
+    ```pip3 install -r requirements.txt```
 
 ## Настройка
 Создать файл .env c переменными `TOKEN` - токен BItly API.
@@ -18,11 +18,11 @@ main.py выводит короткую ссылку или количесвто
 ## Запуск
 - для windows: 
 
-    `python main.py` "Ссылка"
+    ```python main.py``` "Ссылка"
 
 - для mac, linux: 
 
-    `python3 main.py` "Ссылка"
+    ```python3 main.py``` "Ссылка"
 
 ## Цели проекта
 Код написан в учебных целях — это урок в курсе по Python и веб-разработке на сайте Devman.
