@@ -1,4 +1,6 @@
 import os
+from urllib.parse import urlparse
+
 import requests
 from dotenv import load_dotenv
 
@@ -27,11 +29,14 @@ def is_bitlink(link, headers):
 def main():
     load_dotenv()
     link = input("Введите ссылку: ")
+    parsed = urlparse(link)
+    bitlink = parsed.netloc + parsed.path
     headers = {"Authorization": os.environ["BITLY_TOKEN"]}
     try:
-        if not is_bitlink(link, headers):
+        if not is_bitlink(bitlink, headers):
             print("Битлинк :", shorten_link(link, headers))
-        print("Количество переходов: ", count_clicks(link, headers))
+        else:
+            print("Количество переходов: ", count_clicks(bitlink, headers))
     except requests.exceptions.HTTPError as error:
         print(f"Can't get data from server:\n {error}")
 
