@@ -1,28 +1,27 @@
 # Bitly
-Получает короткую ссылку и количество переходов в сервисе [Bitly](https://app.bitly.com/)
+Получает и выводит в консоль короткую ссылку или количество переходов в сервисе [Bitly](https://app.bitly.com/).
 
 main.py выводит короткую ссылку или количесвто переходов в консоль, если передана короткая ссылка. 
 
 ## Установка
-- для windows: 
+Python3 должен быть уже установлен. Затем используйте `pip` (или `pip3`, есть конфликт с Python2) для установки зависимостей:
  
-    ```pip install -r requirements.txt```
-
-- для mac, linux: 
-
-    ```pip3 install -r requirements.txt```
+ ```
+ pip install -r requirements.txt
+ ```
 
 ## Настройка
-Создать файл .env c переменными `TOKEN` - токен BItly API.
+Создать файл с расширением .env c переменной `BITLY_TOKEN`=["токен BItly API"](https://app.bitly.com/settings/api/) Пример:
+```
+BITLY_TOKEN="Bearer ea4b79b5dff2f530"
+```
 
 ## Запуск
-- для windows: 
+Используйте `python` (или `python3`, есть конфликт с Python2) для запуска: 
 
-    ```python main.py``` "Ссылка"
-
-- для mac, linux: 
-
-    ```python3 main.py``` "Ссылка"
-
+```
+python main.py "Ссылка"
+``` 
+    
 ## Цели проекта
 Код написан в учебных целях — это урок в курсе по Python и веб-разработке на сайте Devman.
