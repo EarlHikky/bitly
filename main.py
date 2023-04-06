@@ -1,3 +1,4 @@
+import argparse
 import os
 import requests
 from urllib.parse import urlparse
@@ -27,7 +28,9 @@ def is_bitlink(link, headers):
 
 def main():
     load_dotenv()
-    link = input("Введите ссылку: ")
+    parser = argparse.ArgumentParser(description='Получение коротких ссылок')
+    parser.add_argument("link", help="Ссылка")
+    link = parser.parse_args().link
     parsed = urlparse(link)
     bitlink = parsed.netloc + parsed.path
     headers = {"Authorization": os.environ["BITLY_TOKEN"]}
