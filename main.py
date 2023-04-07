@@ -31,7 +31,7 @@ def main():
     parser = argparse.ArgumentParser(description='Получение коротких ссылок')
     parser.add_argument("link", help="Ссылка")
     link = parser.parse_args().link
-    parsed = urlparse(link)
+    link_parsed = urlparse(link)
     bitlink = parsed.netloc + parsed.path
     headers = {"Authorization": os.environ["BITLY_TOKEN"]}
     try:
