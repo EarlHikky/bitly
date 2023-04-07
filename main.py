@@ -32,7 +32,7 @@ def main():
     parser.add_argument("link", help="Ссылка")
     link = parser.parse_args().link
     link_parsed = urlparse(link)
-    bitlink = parsed.netloc + parsed.path
+    bitlink = f"{link_parsed.netloc}{link_parsed.path}"
     headers = {"Authorization": os.environ["BITLY_TOKEN"]}
     try:
         if not is_bitlink(bitlink, headers):
