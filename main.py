@@ -31,8 +31,8 @@ def main():
     parser = argparse.ArgumentParser(description='Получение коротких ссылок')
     parser.add_argument("link", help="Ссылка")
     link = parser.parse_args().link
-    link_parsed = urlparse(link)
-    bitlink = f"{link_parsed.netloc}{link_parsed.path}"
+    parsed_link = urlparse(link)
+    bitlink = f"{parsed_link.netloc}{parsed_link.path}"
     headers = {"Authorization": os.environ["BITLY_TOKEN"]}
     try:
         if not is_bitlink(bitlink, headers):
